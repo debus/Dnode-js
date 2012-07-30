@@ -1,0 +1,5 @@
+{
+	"module_name"	:	"DNode",
+	"MUID"			:	"AE86",
+	"dependencies"	:	[ "http", "url", "fs", "./ac", "./default_router"],
+};
