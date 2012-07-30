@@ -1,27 +1,27 @@
 //exports.metadata 	= require('./metadata.json');
 
 var http 			= require("http");
-var ac				= require('./ac');
-var router 			= require('./default_router');
+var ac				= require('ac');
+var router 			= require('default_router');
 
 
-var alterConfig = function(default, alterations){
+var alterConfig = function(def, alterations){
 	for(name in alterations){
-		if(typeof default[name] != 'undefined')
-			default[name] = alterations[name];
+		if(typeof def[name] != 'undefined')
+			def[name] = alterations[name];
 	}
 };
 
-var addConfig = function(default, additions){
+var addConfig = function(def, additions){
 	for(name in additions){
-		if(typeof default[name] == 'undefined')
-			default[name] = additions[name];
+		if(typeof def[name] == 'undefined')
+			def[name] = additions[name];
 	}
 };
 
-var combineConfig = function(default, secondary){
+var combineConfig = function(def, secondary){
 	for(name in secondary){
-		default[name] = secondary[name];
+		def[name] = secondary[name];
 	}
 };
 //http://www.nodebeginner.org/#a-word-of-warning
