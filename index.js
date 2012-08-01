@@ -3,27 +3,7 @@
 var http 			= require("http");
 var ac				= require('ac');
 var router 			= require('default_router');
-
-
-var alterConfig = function(def, alterations){
-	for(name in alterations){
-		if(typeof def[name] != 'undefined')
-			def[name] = alterations[name];
-	}
-};
-
-var addConfig = function(def, additions){
-	for(name in additions){
-		if(typeof def[name] == 'undefined')
-			def[name] = additions[name];
-	}
-};
-
-var combineConfig = function(def, secondary){
-	for(name in secondary){
-		def[name] = secondary[name];
-	}
-};
+var config_funcs 	= require('configuration');
 //http://www.nodebeginner.org/#a-word-of-warning
 
 var zcache = {'':'', '':''};
@@ -51,7 +31,7 @@ exports.status = function(code, callback, extended_options){
 };
 
 exports.startServer = function(){
-	alterConfig(configuration.router.configuration, configuration);
+	config_funcs.alterConfig(configuration.router.configuration, configuration);
 	http.createServer(configuration.router.requestHandler).listen(exports.configuration['port']);
 	console.log("DNode server started with the following configuration:");
 	console.log(exports.configuration);
